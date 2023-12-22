@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#displays TI&B indefinitely, sleep 2 in b/w each iteration, I am invincible!!! when SIGTERM signal.
+trap 'echo "I am invisible!!!"' SIGTERM
+while :
+do
+    echo 'To infinity and beyond'
+    sleep 2
+done
