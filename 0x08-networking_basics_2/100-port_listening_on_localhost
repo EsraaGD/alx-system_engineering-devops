@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# listens on port 98 on localhost
+lsof -i :98
+echo "Hello world" | netcat localhost 98
+echo "test" | netcat localhost 98
