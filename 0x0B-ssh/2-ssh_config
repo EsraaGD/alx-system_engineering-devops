@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# SSH client configuration
+
+Host greatone
+    HostName 54.89.119.86
+    User ubuntu
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
+
