@@ -1,0 +1,1 @@
+Web stack debugging is a crucial process that developers undertake to identify and fix issues within the multiple layers that constitute the web application stack.
