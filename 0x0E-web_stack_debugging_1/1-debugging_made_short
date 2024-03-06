@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # Script to fix nginx configuration file
-rm /etc/nginx/sites-enabled/default && ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/ && if ! systemctl is-active --quiet nginx; then service nginx start; fi
-
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+service nginx start
+kill "$(pgrep 'nginx' | head -1)"
