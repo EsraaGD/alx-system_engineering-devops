@@ -2,20 +2,25 @@
 #print info about domains and subdomains using dig
 
 print_domain_subdomain () {
+#dig to perform DNS query for domain or subdomain ($1)
     dig "$1" \
-	#dig to perform DNS query for domain or subdomain ($1)
-        | grep -A1 'ANSWER SECTION:' #grep to filter the answer section 
-        | sed -r "s/$1./$2/g" #substitue occurence of d $1 with sd $2
+	       #grep to filter the answer section
+        | grep -A1 'ANSWER SECTION:'
+        #substitue occurence of d $1 with sd $2
+        | sed -r "s/$1./$2/g"
         #awk to print the subdomain, record type and the IP address
         | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
 }
 
-if [ "$#" -eq 2 ] #if 2 arguments are passed
+#if 2 arguments are passed
+if [ "$#" -eq 2 ] 
 then
-    print_domain_subdomain "$2.$1" "$2" #print domain and subdomain
+    #print domain and subdomain
+    print_domain_subdomain "$2.$1" "$2" 
 else
-    print_domain_subdomain "www.$1" "www" #calls function with d www and sd www
-    print_domain_subdomain "lb-01.$1" "lb-01" #calls function with d lb-01 and sd lb-01
-    print_domain_subdomain "web-01.$1" "web-01" #calls function with d web-01 and sd web-01
-    print_domain_subdomain "web-02.$1" "web-02" #calls function with d web-02 and sd web-02
+    #calls function with d www and sd www and the rest to respective value
+    print_domain_subdomain "www.$1" "www" 
+    print_domain_subdomain "lb-01.$1" "lb-01"
+    print_domain_subdomain "web-01.$1" "web-01"
+    print_domain_subdomain "web-02.$1" "web-02"
 fi
