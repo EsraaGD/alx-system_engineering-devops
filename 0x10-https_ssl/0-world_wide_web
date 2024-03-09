@@ -2,7 +2,8 @@
 #print info about domains and subdomains using dig
 
 print_domain_subdomain () {
-    dig "$1" #dig to perform DNS query for domain or subdomain ($1)
+    dig "$1" \
+	#dig to perform DNS query for domain or subdomain ($1)
         | grep -A1 'ANSWER SECTION:' #grep to filter the answer section 
         | sed -r "s/$1./$2/g" #substitue occurence of d $1 with sd $2
         #awk to print the subdomain, record type and the IP address
