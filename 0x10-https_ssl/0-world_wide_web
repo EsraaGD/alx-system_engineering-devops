@@ -1,24 +1,21 @@
 #!/usr/bin/env bash
-#print info about domains and subdomains using dig
+# Print info about domains and subdomains using dig
 
 print_domain_subdomain () {
-#dig to perform DNS query for domain or subdomain ($1)
+    # Dig to perform DNS query for domain or subdomain ($1)
     dig "$1" \
-	       #grep to filter the answer section
-        | grep -A1 'ANSWER SECTION:'
-        #substitue occurence of d $1 with sd $2
-        | sed -r "s/$1./$2/g"
-        #awk to print the subdomain, record type and the IP address
+        | grep -A1 'ANSWER SECTION:' \  # Grep to filter the answer section
+        | sed -r "s/$1./$2/g" \           # Substitute occurrence of d $1 with sd $2
         | awk -F" " ' NR==2 { print "The subdomain " $1 " is a " $4 " record and points to " $5 }'
+        # Awk to print the subdomain, record type and the IP address
 }
 
-#if 2 arguments are passed
-if [ "$#" -eq 2 ] 
-then
-    #print domain and subdomain
+# If 2 arguments are passed
+if [ "$#" -eq 2 ]; then
+    # Print domain and subdomain
     print_domain_subdomain "$2.$1" "$2" 
 else
-    #calls function with d www and sd www and the rest to respective value
+    # Calls function with d www and sd www and the rest to respective value
     print_domain_subdomain "www.$1" "www" 
     print_domain_subdomain "lb-01.$1" "lb-01"
     print_domain_subdomain "web-01.$1" "web-01"
