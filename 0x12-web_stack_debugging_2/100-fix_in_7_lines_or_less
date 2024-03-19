@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 #A script that makes nginx run as the nginx user but shrinked to 7 lines
-sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+#!/pkill apache2
+chown nginx /etc/nginx/nginx.conf
+chmod u+r /etc/nginx/nginx.conf
 sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
-pkill apache2
-sudo -u nginx service -c nginx start
-
+sudo -u nginx service nginx restart
