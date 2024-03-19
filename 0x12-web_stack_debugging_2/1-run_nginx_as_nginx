@@ -14,3 +14,4 @@ sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
 # Start nginx service
 echo "Starting nginx service..."
 nginx -g 'daemon off;'
+
