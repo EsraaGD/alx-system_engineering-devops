@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#A script that makes nginx run as the nginx user 
+if ! command -v nginx &> /dev/null; then
+    echo "Installing nginx..."
+    apk add nginx
+fi
+
+# Ensure nginx is not running as root
+sed -i 's/user\s*nginx;/user nginx;/' /etc/nginx/nginx.conf
+
+# Update nginx configuration to listen on all active IPs on port 8080
+sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
+
+# Start nginx service
+echo "Starting nginx service..."
+nginx -g 'daemon off;'

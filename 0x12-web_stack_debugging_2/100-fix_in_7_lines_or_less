@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#A script that makes nginx run as the nginx user but shrinked to 7 lines
+sed -i 's/user\s*nginx;/user nginx/' /etc/nginx/nginx.conf
+sed -i 's/listen\s*80;/listen 8080/' /etc/nginx/conf.d/default.conf
+nginx -g 'daemon off'
