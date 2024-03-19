@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
-#A script that makes nginx run as the nginx user 
+#A script that makes nginx run as the nginx user
+
+#Kill all running apache processes (sigterm)
 pkill apache2
+
+#Set permission recursively to 777 (RWX)
 chmod -R 777 /etc/nginx
 
-# Ensure nginx is not running as root
+#sed command edits the nginx.conf file,
+#replacing #user www-data with user nginx,
+#ensuring that Nginx runs as the nginx user instead of root or www-data.
 sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
 
-# Update nginx configuration to listen on all active IPs on port 8080
+# Update nginx configuration to listen on 8080 instead of 80
 sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+
+# Start nginx as the nginx user
 sudo -u nginx nginx -c /etc/nginx/nginx.conf
 
