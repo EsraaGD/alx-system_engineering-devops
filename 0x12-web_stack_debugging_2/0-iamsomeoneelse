@@ -1,7 +1,3 @@
 #!/usr/bin/env bash
 #A script that accepts 1 argument and runs the whoami command
-if [ "$#" -eq 1 ]; then
-    sudo -u $1 whoami
-else
-    echo "Usage: $0 <username>"
-fi
+sudo -u $1 whoami
