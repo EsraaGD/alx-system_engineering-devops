@@ -1,4 +1,4 @@
-/*Insert pic here*/
+![alt text](Load_B.jpg)
 
 Issue Summary:
 - Duration: The great digital kerfuffle commenced on April 7th, 2024, from 2:00 PM to 4:30 PM (UTC), giving us all a brief moment to ponder the meaning of life.
